@@ -8,6 +8,10 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdk 32
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
     defaultConfig {
         applicationId "com.gmail.notifyu"
         minSdk 26
@@ -49,6 +53,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation platform('com.google.firebase:firebase-bom:29.2.0')
-    implementation 'com.google.firebase:firebase-database-ktx:'
-    implementation 'com.google.firebase:firebase-auth-ktx:'
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }

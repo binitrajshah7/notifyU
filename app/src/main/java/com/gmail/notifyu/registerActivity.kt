@@ -4,11 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.gmail.notifyu.databinding.ActivityLoginBinding
 import com.gmail.notifyu.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 class registerActivity : AppCompatActivity() {
     lateinit var binding : ActivityRegisterBinding
@@ -43,6 +43,8 @@ class registerActivity : AppCompatActivity() {
                     val userId : String = FirebaseAuth.getInstance().currentUser!!.uid
                     storeUser(name, email, userId)
 
+                    retrieveAndStoreToken()
+
                     val intent = Intent(this, UserList::class.java)
                     startActivity(intent)
                     finishAffinity()
@@ -55,7 +57,6 @@ class registerActivity : AppCompatActivity() {
 
     private fun storeUser(name: String, email: String, id: String) {
         val newUser = User(name, email, id)
-
         FirebaseDatabase
             .getInstance()
             .getReference("User")
@@ -69,6 +70,28 @@ class registerActivity : AppCompatActivity() {
                     Toast.makeText(this, "Register Failed", Toast.LENGTH_SHORT).show()
                 }
 
+            }
+    }
+
+    // with token we can send notification to a single device
+    private fun retrieveAndStoreToken() {
+        FirebaseMessaging
+            .getInstance()
+            .token
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val userId : String = FirebaseAuth
+                        .getInstance()
+                        .currentUser!!.uid
+                    val token: String = task.result
+
+                    // storing token in firebase database with specific userId
+                    FirebaseDatabase
+                        .getInstance()
+                        .getReference("tokens")
+                        .child(userId)
+                        .setValue(token)
+                }
             }
     }
 }
