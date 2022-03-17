@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "34730269344",
+    "project_id": "notifyu-c1389",
+    "storage_bucket": "notifyu-c1389.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34730269344:android:dd3e7164b888320e0fc7c5",
+        "android_client_info": {
+          "package_name": "com.gmail.notifyu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34730269344-ha9huca0hot11hdau01rp5pjj7nu7a4f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_clAXqBvGkC_6jC5-deZ4T6vuzYgXJt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34730269344-ha9huca0hot11hdau01rp5pjj7nu7a4f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
