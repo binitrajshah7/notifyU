@@ -75,9 +75,11 @@ class UserList : AppCompatActivity() {
                     if(snapshot.exists()){
                         for(userSnapshot in snapshot.children){
                             val user = userSnapshot.getValue(User::class.java)
-                            userList.add(user!!)
+                            if(user!!.id != FirebaseAuth.getInstance().currentUser!!.uid) {
+                                userList.add(user)
+                                adapter.notifyDataSetChanged()
+                            }
                         }
-                        adapter.notifyDataSetChanged()
                     }
                 }
 

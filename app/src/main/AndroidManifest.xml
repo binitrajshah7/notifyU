@@ -11,7 +11,12 @@
         android:theme="@style/Theme.NotifyU">
         <activity
             android:name=".UserList"
-            android:exported="false" />
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.vineet.firebasepushnotification" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".registerActivity"
             android:exported="false"
@@ -26,6 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
